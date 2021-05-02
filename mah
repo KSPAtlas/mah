@@ -1,0 +1,23 @@
+#!/bin/bash
+mkdir -p ~/.cache/mah
+cd ~/.cache/mah
+if [ $1 = "--clean" ]
+then
+	echo -e "\e[0;92m\e[1m mah:\e[0;97m\e[1m Cleaning cache, as requested.\e[0m"
+	rm -rf ~/.cache/mah/*
+	exit 0
+fi
+echo -e "\e[0;92m\e[1m mah:\e[0;97m\e[1m Installing package: $1\e[0m"
+if [ -d $1 ]
+then
+	echo -e "\e[0;32m\e[1m mah:\e[0;33m\e[1m Folder with package name was found. Did you already install this? \e[0m"
+	rm -rf $1
+fi
+git clone https://aur.archlinux.org/$1.git
+cd $1
+makepkg -si
+if [ $? != 0 ]
+then
+	echo -e "\e[0;32m\e[1m mah:\e[0;31m\e[1m Errors have occured.\e[0m"
+	exit 1
+fi
