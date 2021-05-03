@@ -1,5 +1,5 @@
 # mah
-A small and simple AUR helper written in bash.
+A small and simple AUR helper written in bash. Mah stands for Micro AUR Helper.
 
 # How to install
 Move the file "mah" into /usr/local/bin.
